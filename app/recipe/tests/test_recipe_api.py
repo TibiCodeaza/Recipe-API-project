@@ -29,8 +29,8 @@ def create_recipe(user, **params):
     """ create and return a sample recipe"""
     defaults = {
         'title': 'Sample recipe title',
-        'time_minutes':22,
-        'price':Decimal('5.25'),
+        'time_minutes': 22,
+        'price': Decimal('5.25'),
         'description': 'Sample description',
         'link': 'http://example.com/recipe.pdf'
     }
@@ -102,9 +102,9 @@ class PrivateRecipeApiTests(TestCase):
     def test_create_recipe(self):
         """test creating a recipe."""
         payload = {
-            'title' : 'sample recipe',
-            'time_minutes' : 30,
-            'price' : Decimal('5.99'),
+            'title': 'sample recipe',
+            'time_minutes': 30,
+            'price': Decimal('5.99'),
         }
         res = self.client.post(RECIPES_URL, payload)
 
@@ -145,7 +145,7 @@ class PrivateRecipeApiTests(TestCase):
         payload = {
             'title': 'New recipe title',
             'link': 'https://example.com/new-recipe.pdf',
-            'description': 'New recipe description',
+            'description': 'Sample recipe description',
             'time_minutes': 10,
             'price': Decimal('2.50'),
         }
@@ -180,7 +180,7 @@ class PrivateRecipeApiTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
         self.assertFalse(Recipe.objects.filter(id=recipe.id).exists())
 
-    def test_recipe_other_users_recipe_error(self):
+    def test_delete_other_users_recipe_error(self):
         """test trying to delete another users recipe gives error."""
         new_user = create_user(email='user2@example.com', password='test123')
         recipe = create_recipe(user=new_user)

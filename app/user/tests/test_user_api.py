@@ -40,9 +40,9 @@ class PublicUserApiTests(TestCase):
     def test_user_with_email_exists_error(self):
         "test error return if user with email exists."
         payload = {
-            'email' : 'test@example.com',
-            'password' : 'testpass123',
-            'name' : 'Test Name',
+            'email': 'test@example.com',
+            'password': 'testpass123',
+            'name': 'Test Name',
         }
         create_user(**payload)
         res = self.client.post(CREATE_USER_URL, payload)
@@ -52,9 +52,9 @@ class PublicUserApiTests(TestCase):
     def test_password_too_short_error(self):
         """test an error is returned if pass less than 5 chars"""
         payload = {
-            'email' : 'test@example.com',
-            'password' : 'pw',
-            'name' : 'Test Name',
+            'email': 'test@example.com',
+            'password': 'pw',
+            'name': 'Test Name',
         }
         res = self.client.post(CREATE_USER_URL, payload)
 
